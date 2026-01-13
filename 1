@@ -1,0 +1,40 @@
+class Solution {
+    static long getPairsCount(int[] arr, int n, int k) {
+        int left = 0, right = n - 1;
+        long count = 0;
+
+        while (left < right) {
+            long sum = (long) arr[left] + arr[right];
+
+            if (sum == k) {
+                if (arr[left] == arr[right]) {
+                    long len = right - left + 1;
+                    count += (len * (len - 1)) / 2;
+                    break;
+                }
+
+                int leftVal = arr[left];
+                int leftCount = 0;
+                while (left <= right && arr[left] == leftVal) {
+                    left++;
+                    leftCount++;
+                }
+
+                int rightVal = arr[right];
+                int rightCount = 0;
+                while (right >= left && arr[right] == rightVal) {
+                    right--;
+                    rightCount++;
+                }
+
+                count += (long) leftCount * rightCount;
+            } else if (sum < k) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+
+        return count;
+    }
+}
