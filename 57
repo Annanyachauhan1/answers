@@ -1,0 +1,25 @@
+int prims(int V, ArrayList<ArrayList<int[]>> adj) {
+    boolean[] visited = new boolean[V];
+    PriorityQueue<int[]> pq = new PriorityQueue<>(
+        (a, b) -> a[1] - b[1]
+    );
+
+    pq.add(new int[]{0, 0});
+    int sum = 0;
+
+    while (!pq.isEmpty()) {
+        int[] curr = pq.poll();
+        int node = curr[0];
+        int wt = curr[1];
+
+        if (visited[node]) continue;
+        visited[node] = true;
+        sum += wt;
+
+        for (int[] it : adj.get(node)) {
+            if (!visited[it[0]])
+                pq.add(new int[]{it[0], it[1]});
+        }
+    }
+    return sum;
+}
