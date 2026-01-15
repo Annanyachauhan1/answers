@@ -1,0 +1,38 @@
+void boundary(Node root) {
+    if (root == null) return;
+    System.out.print(root.data + " ");
+    leftBoundary(root.left);
+    leaves(root.left);
+    leaves(root.right);
+    rightBoundary(root.right);
+}
+
+void leftBoundary(Node root) {
+    if (root == null) return;
+    if (root.left != null) {
+        System.out.print(root.data + " ");
+        leftBoundary(root.left);
+    } else if (root.right != null) {
+        System.out.print(root.data + " ");
+        leftBoundary(root.right);
+    }
+}
+
+void rightBoundary(Node root) {
+    if (root == null) return;
+    if (root.right != null) {
+        rightBoundary(root.right);
+        System.out.print(root.data + " ");
+    } else if (root.left != null) {
+        rightBoundary(root.left);
+        System.out.print(root.data + " ");
+    }
+}
+
+void leaves(Node root) {
+    if (root == null) return;
+    leaves(root.left);
+    if (root.left == null && root.right == null)
+        System.out.print(root.data + " ");
+    leaves(root.right);
+}
