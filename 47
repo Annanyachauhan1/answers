@@ -1,0 +1,19 @@
+void bfs(int V, ArrayList<ArrayList<Integer>> adj) {
+    boolean[] visited = new boolean[V];
+    Queue<Integer> q = new LinkedList<>();
+
+    visited[0] = true;
+    q.add(0);
+
+    while (!q.isEmpty()) {
+        int node = q.poll();
+        System.out.print(node + " ");
+
+        for (int it : adj.get(node)) {
+            if (!visited[it]) {
+                visited[it] = true;
+                q.add(it);
+            }
+        }
+    }
+}
