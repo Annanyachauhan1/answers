@@ -1,0 +1,13 @@
+int maxLevel = 0;
+
+void leftView(Node root, int level) {
+    if (root == null) return;
+
+    if (level > maxLevel) {
+        System.out.print(root.data + " ");
+        maxLevel = level;
+    }
+
+    leftView(root.left, level + 1);
+    leftView(root.right, level + 1);
+}
