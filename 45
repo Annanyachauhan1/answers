@@ -1,0 +1,20 @@
+int maxTime = 0;
+
+int burn(Node root, int target) {
+    if (root == null) return -1;
+
+    if (root.data == target) return 0;
+
+    int left = burn(root.left, target);
+    int right = burn(root.right, target);
+
+    if (left != -1) {
+        maxTime = Math.max(maxTime, left + height(root.right) + 1);
+        return left + 1;
+    }
+    if (right != -1) {
+        maxTime = Math.max(maxTime, right + height(root.left) + 1);
+        return right + 1;
+    }
+    return -1;
+}
